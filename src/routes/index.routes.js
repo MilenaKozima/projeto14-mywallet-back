@@ -6,3 +6,4 @@ const router = Router();
 router.use(cadastro);
 
 export default router;
+

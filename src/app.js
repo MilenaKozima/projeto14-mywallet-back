@@ -24,6 +24,7 @@ try{
 
 const db = mongoClient.db();
 
+
 //Schemas
 const userSchema = Joi.object({
     name: Joi.string().required(),
