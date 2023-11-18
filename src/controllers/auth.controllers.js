@@ -39,7 +39,10 @@ export async function signin(req, res) {
 }
 
 export async function signout(req, res) {
+    const {token} = res.locals
     try{
+        await db.collection("session").deleteOne({token})
+        res.sendStatus(204)
 
     } catch (err){
         res.status(500).send(err.message)
