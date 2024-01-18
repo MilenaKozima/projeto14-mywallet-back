@@ -11,3 +11,4 @@ authRouter.post("/login", validateSchema(loginSchema), signin)
 authRouter.post("/logout",validateAuth, signout)
 
 export default authRouter
+

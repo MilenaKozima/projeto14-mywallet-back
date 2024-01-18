@@ -8,7 +8,7 @@ export async function signup(req, res) {
 
     try{
         const user = await db.collection("users").findOne({email})
-        if (user) return res.status(409).send({message: "E-mail já cadastrado"})
+        if (user) return res.status(409).send("E-mail já cadastrado")
         
         const hash = bcrypt.hashSync(password, 10)
 
@@ -24,10 +24,10 @@ export async function signin(req, res) {
 
     try{
         const user = await db.collection("users").findOne({email})
-        if (!user) return res.status(404).send({message: "E-mail não cadastrado"})
+        if (!user) return res.status(404).send("E-mail não cadastrado")
 
         const iscorrectPassword = bcrypt.compareSync(password, user.password)
-        if (!iscorrectPassword) return res.status(401).send({message: "Senha incorreta"})
+        if (!iscorrectPassword) return res.status(401).send("Senha incorreta")
 
         const token = uuid()
         await db.collection("sessions").insertOne({token, userId: user._id})
