@@ -6,7 +6,7 @@ export async function createTransaction(req, res) {
     const {userId} = res.locals
     try {
         const transaction = {value:Number(value), description, type, date:dayjs().valueOf(), userId}
-        await db.collection("transactions").insertOne(transaction)
+        await db.collection("transaction").insertOne(transaction)
         res.sendStatus(201)
     } catch (err){
         res.status(500).send(err.message)
@@ -17,7 +17,7 @@ export async function readTransactions(req, res) {
     const {userId} = res.locals
 
     try {
-        const transactions = await db.collection("transactions").find({userId}).sort({date: -1}).toArray()
+        const transactions = await db.collection("transaction").find({userId}).sort({date: -1}).toArray()
         res.send(transactions)
     } catch (err){
         res.status(500).send(err.message)
