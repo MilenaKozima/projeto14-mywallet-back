@@ -41,7 +41,7 @@ export async function signin(req, res) {
 export async function signout(req, res) {
     const {token} = res.locals
     try{
-        await db.collection("session").deleteOne({token})
+        await db.collection("sessions").deleteOne({token})
         res.sendStatus(204)
 
     } catch (err){
